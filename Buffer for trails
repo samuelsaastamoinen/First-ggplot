@@ -7,3 +7,22 @@ library(ggplot2)
 
 roads <- st_read("C:/Users/samue/OneDrive/Desktop/R/MNV_Trails/MNV_Trails.shp")
 View(roads)
+
+hiking <- roads %>% filter(Trail_Type == "Hiking")
+
+ggplot(data = roads) +
+  geom_sf() +
+  labs(title = "Trails")
+
+projected_crs <- st_crs("+proj=utm +zone=15 +datum=WGS84")
+hiking_projected <- st_transform(hiking, crs = projected_crs)
+
+buffer_zone_projected <- st_buffer(hiking_projected, dist = 1000)  # 1000 meters
+
+buffer_zone <- st_transform(buffer_zone_projected, crs = st_crs(hiking))
+
+ggplot() +
+  geom_sf(data = buffer_zone, fill = "blue", alpha = 0.3) +
+  geom_sf(data = hiking, color = "red", size = 3) +
+  labs(title = "Buffer Analysis", subtitle = "Buffer and Point of Interest") +
+  theme_minimal()
