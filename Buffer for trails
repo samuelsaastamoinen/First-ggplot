@@ -1,0 +1,9 @@
+install.packages("sf")
+install.packages("dplyr")
+
+library(sf)
+library(dplyr)
+library(ggplot2)
+
+roads <- st_read("C:/Users/samue/OneDrive/Desktop/R/MNV_Trails/MNV_Trails.shp")
+View(roads)
