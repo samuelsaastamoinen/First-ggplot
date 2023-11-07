@@ -1,0 +1,6 @@
+library(sf)
+library(ggplot2)
+
+#Read shape file to R
+Italy <- st_read("C:/Users/samue/OneDrive/Desktop/R/Italy_shapefile/it_1km.shp")
+View(Italy)
