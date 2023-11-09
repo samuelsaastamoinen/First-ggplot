@@ -1,6 +1,17 @@
 library(sf)
 library(ggplot2)
+library(dplyr)
 
-#Read shape file to R
-Italy <- st_read("C:/Users/samue/OneDrive/Desktop/R/Italy_shapefile/it_1km.shp")
-View(Italy)
+us_shp <- st_read("States_shapefile.shp")
+View(us_shp)
+
+install.packages("readxl")
+library("readxl")
+us_pop <- read_excel("PopulationReport.xlsx")
+View(us_pop)
+
+pop <- data.frame(us_pop)
+pop
+na.omit(pop)
+
+colnames(pop)
